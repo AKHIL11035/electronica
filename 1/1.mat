@@ -1,0 +1,59 @@
+mu = 0.01;
+filterOrder = 32;
+
+
+s = load('expected_output.txt');
+h = load('impulse_response.txt');
+
+%% Generate distorted signal x(n)
+x_full = conv(s, h);
+N = length(s);
+x = x_full(1:N);
+
+
+%% Preallocate
+y = zeros(N,1);
+e = zeros(N,1);
+W = zeros(filterOrder,1);
+
+%% Adaptive filtering (LMS)
+for n = filterOrder:N
+    % Form input vector: most recent samples x[n], x[n-1], ..., x[n-filterOrder+1]
+    x_vec = x(n:-1:n-filterOrder+1);
+    % Filter output
+    y(n) = W' * x_vec;
+    % Instantaneous error (using clean signal)
+    e(n) = s(n) - y(n);
+    % Weight update
+    W = W + mu * x_vec * e(n);
+end
+
+%% Performance Metrics
+mse = mean(e(filterOrder:end).^2);
+fprintf('Final MSE = %.4e\n', mse);
+
+%% Plots
+figure;
+subplot(3,1,1);
+plot(s);
+title('Clean signal s(n)');
+xlabel('Sample index'); ylabel('Amplitude');
+\ nsubplot(3,1,2);
+plot(x);
+title('Distorted signal x(n)');
+xlabel('Sample index'); ylabel('Amplitude');
+
+subplot(3,1,3);
+plot(y);
+title('Recovered signal y(n) via LMS');
+xlabel('Sample index'); ylabel('Amplitude');
+
+figure;
+plot(e(filterOrder:end));
+title('Error signal e(n)');
+xlabel('Sample index'); ylabel('Error');
+
+%% Save results
+save('recovered_signal.txt', 'y', '-ascii');
+save('error_signal.txt', 'e', '-ascii');
+

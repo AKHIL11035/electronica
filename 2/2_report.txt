@@ -1,0 +1,43 @@
+PCB statistics report
+=====================
+- Date: Wed 21 May 2025 08:28:29 PM IST
+- Project: 2
+- Board name: 2
+
+Board
+-----
+- Width: 26.0000 mm
+- Height: 34.0000 mm
+- Area: 884.0000 mm²
+
+Pads
+----
+- Through hole: 33
+- SMD: 0
+- Connector: 0
+- NPTH: 0
+
+Vias
+----
+- Through vias: 0
+- Blind/buried: 0
+- Micro vias: 0
+
+Components
+----------
+
+|              | Front Side | Back Side | Total |
+|--------------|------------|-----------|-------|
+|THT:          |          9 |         0 |     9 |
+|SMD:          |          1 |         0 |     1 |
+|Unspecified:  |          0 |         0 |     0 |
+|Total:        |         10 |         0 |    10 |
+
+Drill holes
+-----------
+
+| Count | Shape |    X Size |    Y Size | Plated | Via/Pad | Start Layer | Stop Layer |
+|-------|-------|-----------|-----------|--------|---------|-------------|------------|
+|    22 | Round | 0.8000 mm | 0.8000 mm |    PTH |     Pad |        F.Cu |       B.Cu |
+|     9 | Round | 0.9000 mm | 0.9000 mm |    PTH |     Pad |        F.Cu |       B.Cu |
+|     2 | Round | 1.0000 mm | 1.0000 mm |    PTH |     Pad |        F.Cu |       B.Cu |
